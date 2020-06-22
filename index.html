@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Denoising Diffusion Probabilistic Models</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <div class="highlight-clean" style="padding-bottom: 10px;">
+        <div class="container">
+            <h1 class="text-center">Denoising Diffusion Probabilistic Models</h1>
+        </div>
+        <div class="container" style="max-width: 540px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="text-center" style="margin: 0px;"><a href="http://www.jonathanho.me/">Jonathan Ho</a></h5>
+                    <h6 class="text-center">UC Berkeley</h6>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-center" style="margin: 0px;"><a class="text-center" href="https://www.ajayjain.net/">Ajay Jain</a></h5>
+                    <h6 class="text-center">UC Berkeley</h6>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-center" style="margin: 0px;"><a class="text-center" href="https://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a></h5>
+                    <h6 class="text-center">UC Berkeley</h6>
+                </div>
+            </div>
+        </div>
+        <div class="buttons" style="margin-bottom: 8px;"><a class="btn btn-primary" role="button" href="assets/denoising_diffusion20.pdf">Paper (high-res)</a><a class="btn btn-light" role="button" href="https://arxiv.org/abs/2006.11239">Paper (arXiv)</a><a class="btn btn-light" role="button" href="https://github.com/hojonathanho/diffusion">GitHub</a></div>
+        <div class="container" style="max-width: 540px;">
+            <div class="row">
+                <div class="col-md-12 text-center"><img src="assets/img/denoising_diffusion_all.png" style="width: 100%;margin-bottom: 8px;" alt="Samples from denoising diffusion probabilistic models trained on CelebA-HQ, LSUN Bedrooms, LSUN church and LSUN cat datasets at 256x256 resolution"><em>Images generated unconditionally by our probabilistic model.<br>These are not real people, places, animals or objects.</em></div>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 540px;">
+    <div class="container" style="max-width: 540px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Summary</h2>
+                <ul>
+                    <li>High quality image synthesis using diffusion probabilistic latent-variable models, proposed by Sohl-Dickstein et al. 2015. Unconditional CIFAR10 FID=3.17, LSUN samples comparable to GANs.</li>
+                    <li>Show that diffusion probabilistic models&nbsp; resemble denoising score matching + Langevin dynamics, yet provide log likelihoods and rate-distortion curves in a single model.</li>
+                    <li>Diffusion models are compressors that allow the degree of lossiness to be controlled, allowing us to reconstruct and interpolate images.</li>
+                </ul><img class="img-fluid" src="assets/img/pgm_diagram_xarrow.png">
+                <p></p><em class="text-center" style="display: block;">Diffusion models consist of a learned, generative reverse process p and a Gaussian diffusion approximate posterior, the forward process q.</em></div>
+        </div>
+    </div>
+    <hr style="max-width: 540px;">
+    <div class="container" style="max-width: 540px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Abstract</h2>
+                <p>We present high quality image synthesis results using diffusion probabilistic models, a class of latent variable models inspired by considerations from nonequilibrium thermodynamics. Our best results are obtained by training on a weighted
+                    variational bound designed according to a novel connection between diffusion probabilistic models and denoising score matching with Langevin dynamics, and our models naturally admit a progressive lossy decompression scheme that can
+                    be interpreted as a generalization of autoregressive decoding. On the unconditional CIFAR10 dataset, we obtain an Inception score of 9.46 and a state-of-the-art FID score of 3.17. On 256x256 LSUN, we obtain sample quality similar to
+                    ProgressiveGAN.<br></p>
+            </div>
+        </div>
+    </div>
+    <hr style="max-width: 540px;">
+    <div class="container" style="max-width: 540px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Lossy compression</h2>
+                <p>We show that diffusion probabilistic models resemble denoising score matching with Langevin dynamics sampling, yet provide log likelihoods and rate-distortion curves in one evaluation of the variational bound.<br></p><img class="img-fluid"
+                    src="assets/img/rate.png" style="margin-bottom: 8px;"><em class="text-center" style="display: block;">CIFAR10 sample quality and lossless compression metrics (left), rate-distortion curve for lossy compression (right).</em></div>
+        </div>
+    </div>
+    <hr style="max-width: 540px;">
+    <div class="container" style="max-width: 540px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Interpolation and reconstruction</h2>
+                <p>Our model can interpolate images in latent space, in effect removing artifacts introduced by pixel-space interpolation. Interpolations can be customized in a coarse-to-fine manner by choosing the timestep where mixing is performed. Reconstructions
+                    are high-quality.</p><img class="img-fluid" src="assets/img/interp.jpg" style="margin-bottom: 8px;"><em class="text-center" style="display: block;">Interpolations of CelebA-HQ 256x256 images with 500 timesteps of diffusion. Real actors are on the left and right. Others are generated by our model.</em>
+                <img
+                    class="img-fluid" src="assets/img/interp_coarse_to_fine.jpg" style="margin-top: 16px;margin-bottom: 8px;"><em class="text-center" style="display: block;">Coarse-to-fine interpolations. Lossiness can be configured.</em></div>
+        </div>
+    </div>
+    <hr style="max-width: 540px;">
+    <div class="container" style="max-width: 540px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Latent structure</h2>
+                <p>Latent variables encode meaningful high-level attributes about samples such as pose, eyewear and gender.</p><img class="img-fluid" src="assets/img/stochastic_decoding_single.jpg" style="margin-bottom: 8px;"><em class="text-center" style="display: block;">Samples generated from the same latent share high-level attributes.</em></div>
+        </div>
+    </div>
+    <hr style="max-width: 540px;">
+    <div class="container" style="max-width: 540px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Citation</h2>
+                <p>Jonathan Ho, Ajay Jain, Pieter Abbeel. Denoising Diffusion Probabilistic Models.<strong>&nbsp;In submission,</strong>&nbsp;2020.<br></p><code>@article{ho2020denoising,<br>&nbsp; title={Denoising Diffusion Probabilistic Models},<br>&nbsp; author={Jonathan Ho and Ajay Jain and Pieter Abbeel},<br>&nbsp; year={2020},<br>&nbsp; journal={arXiv preprint}<br>}<br></code></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
