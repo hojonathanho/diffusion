@@ -26,6 +26,37 @@ The prefix should be passed into the scripts using the `--bucket_name_prefix` fl
 
 Models and samples can be found at: https://www.dropbox.com/sh/pm6tn31da21yrx4/AABWKZnBzIROmDjGxpB6vn6Ja
 
+## **Integration with 🤗 Diffusers library in PyTorch**
+
+If you are looking for a PyTorch version for DDPM, you can check out the [Diffusers library](https://huggingface.co/docs/diffusers/api/pipelines/ddpm).
+You can install diffusers as follows:
+
+```
+pip install diffusers torch accelerate
+```
+
+And then try out the model with just a couple lines of code:
+
+```python
+from diffusers import DDPMPipeline, DDIMPipeline, PNDMPipeline
+
+model_id = "google/ddpm-cifar10-32"
+
+# load model and scheduler
+ddpm = DDPMPipeline.from_pretrained(model_id)  # you can replace DDPMPipeline with DDIMPipeline or PNDMPipeline for faster inference
+
+# run pipeline in inference (sample random noise and denoise)
+image = ddpm().images[0]
+
+# save image
+image.save("ddpm_generated_image.png")
+```
+
+More DDPM models can be found directly [on the Hub](https://huggingface.co/models?library=diffusers&sort=downloads&search=ddpm)
+
+To better understand DDPM, you can check out [this introductionary google colab](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/diffusers_intro.ipynb)
+To train your own DDPM from scratch, feel free to have a look at [unconditional_image_generation](https://github.com/huggingface/diffusers/tree/main/examples/unconditional_image_generation)
+
 ## Citation
 If you find our work relevant to your research, please cite:
 ```
