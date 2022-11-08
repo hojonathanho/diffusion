@@ -38,8 +38,7 @@ pip install diffusers torch accelerate
 And then try out the model with just a couple lines of code:
 
 ```python
-from diffusers import DDPMPipeline, DDIMPipeline, PNDMPipeline
-
+from diffusers import DDPMPipeline
 model_id = "google/ddpm-cifar10-32"
 
 # load model and scheduler
