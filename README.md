@@ -1,5 +1,7 @@
 # Denoising Diffusion Probabilistic Models
 
+(Forked and cloned by cesar-barreto on Aug 29, 2023)
+
 Jonathan Ho, Ajay Jain, Pieter Abbeel
 
 Paper: https://arxiv.org/abs/2006.11239
