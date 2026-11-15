@@ -24,6 +24,9 @@ The commands to run training and evaluation are in comments at the top of the sc
 Data is stored in GCS buckets. The scripts are written to assume that the bucket names are of the form `gs://mybucketprefix-us-central1`; i.e. some prefix followed by the region.
 The prefix should be passed into the scripts using the `--bucket_name_prefix` flag.
 
+Sampling and the bits/dim evaluation (`calc_bpd_loop`) use `clip_denoised=True` by default, so the predicted x_0 is clipped to [-1, 1] at every step.
+With `model_var_type='fixedlarge'`, the log-variance at the first timestep (t=0) is set to `log(posterior_variance[1])` instead of `log(betas[0])` to get a better decoder log likelihood (see `p_mean_variance` in `diffusion_tf/diffusion_utils_2.py`).
+
 Models and samples can be found at: https://www.dropbox.com/sh/pm6tn31da21yrx4/AABWKZnBzIROmDjGxpB6vn6Ja
 
 ## Citation
