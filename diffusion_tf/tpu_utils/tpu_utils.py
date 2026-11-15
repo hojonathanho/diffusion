@@ -166,8 +166,8 @@ def run_training(
     )
 
     # ema
-    ema, ema_op = make_ema(global_step=global_step, ema_decay=ema_decay, trainable_variables=trainable_variables)
     with tf.control_dependencies([train_op]):
+      ema, ema_op = make_ema(global_step=global_step, ema_decay=ema_decay, trainable_variables=trainable_variables)
       train_op = tf.group(ema_op)
 
     # summary
